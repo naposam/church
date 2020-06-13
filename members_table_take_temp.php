@@ -53,7 +53,7 @@
 			});
 			</script>
 			<td>
-		<a data-placement="top" title="Click to View all Details" id="view<?php echo $id; ?>" href="view_temperature_details.php<?php echo '?id='.$id; ?>" class="btn btn-warning" style="background: #565615">VIEW</a>
+		<a data-placement="top" title="Click to View all Details" id="view<?php echo $id; ?>" href="view_temperature_details_take.php<?php echo '?id='.$id; ?>" class="btn btn-warning" style="background: #565615">VIEW</a>
 			<script type="text/javascript">
 			$(document).ready(function(){
 				$('#view<?php echo $id; ?>').tooltip('show');
