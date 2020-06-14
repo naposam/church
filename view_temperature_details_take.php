@@ -17,21 +17,31 @@
 		<?php include('navbar.php'); ?>
         <div class="container-fluid">
             <div class="row-fluid">
-					
+				<?php
+$sql="SELECT * FROM  members_registration WHERE uid='$get_id'";
+                $result=mysqli_query($mysqli,$sql);
+                $data=mysqli_fetch_array($result);
+
+					?>	
                 <div class="span9" id="">
                      <div class="row-fluid sam">
                         <!-- block -->
                         <div  id="block_bg" class="block">
                             <div class="navbar navbar-inner block-header">
                                 <div class="muted pull-right">
+
 									<a href="member_dir_take_temp.php"><i class="icon-arrow-left icon-large"></i> Back</a>
+								</div>
+								<div class="muted pull-left">
+                              LIST OF TEMPERATURE
+									
 								</div>
                             </div>
 
                             <div class="block-content collapse in">
                       <div class="span12">      	
            <table cellpadding="0" cellspacing="0" border="1" class="table" id="">
-            <div class="alert alert-success">TEMPERATURE</div>
+            <div class="alert alert-success text-center"><?php echo strtoupper($data['fname']).' '.strtoupper($data['mname']).' '.strtoupper($data['lname']) ;?> </div>
 		<thead>
 		<tr>
 					<th>#ID</th>

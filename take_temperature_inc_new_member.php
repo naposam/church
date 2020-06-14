@@ -2,9 +2,7 @@
 session_start();
 include('includes/banner.php'); ?>
 
-<?php $get_id = $_GET['id'];
-
- ?>
+<?php $get_id = $_SESSION['last_id']; ?>
 <style type="text/css">
     body{
       background-image: url(images/use.jpg) !important;
@@ -34,14 +32,12 @@ include('includes/banner.php'); ?>
                         <div  id="block_bg" class="block">
                             <div class="navbar navbar-inner block-header">
                                 <div class="muted pull-left"><i class="icon-pencil icon-large"></i>Take Temperature</div>
-                                <div class="muted pull-right"><a href="member_dir_take_temp.php"><i class="icon-arrow-left icon-large"></i> Back</a></div>
+                                <div class="muted pull-right"><a href="member_registration.php"><i class="icon-arrow-left icon-large"></i> Back</a></div>
                             </div>
                             <div class="block-content collapse in">
 						<?php
 						$query = mysqli_query($mysqli,"SELECT * from members_registration where uid = '$get_id'")or die(mysqli_error($mysqli));
 						$row = mysqli_fetch_array($query);
-
-						$_SESSION['uid']=$row['uid'];
 						?>
 						<form id="update_student" class="form-signin" method="post">
 						<!-- span 4 -->
@@ -80,7 +76,7 @@ include('includes/banner.php'); ?>
 												data: formData,
 												success: function(html){
 													$.jGrowl("Member Successfully Saved", { header: 'Save Data' });
-													window.location = 'question_two.php';
+													window.location = 'question.php';
 												}
 											});
 										});

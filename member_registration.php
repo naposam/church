@@ -2,13 +2,14 @@
 <?php include 'includes/validation.php';?>
 <?php include ('includes/dbCon.php');?>
 <?php
+session_start();
  if(isset($_POST['member'])){
     $fname=$_POST['fname'];
     $mname=$_POST['mname'];
     $lname=$_POST['lname'];
     $phone=$_POST['phone'];
     $address=$_POST['address'];
-     $tem=$_POST['temp'];
+     // $tem=$_POST['temp'];
      $gender=$_POST['gender'];
    $check=mysqli_query($mysqli,"SELECT * FROM members_registration where phone_number='$phone' limit 1")or die(mysqli_error($mysqli));
    $count=mysqli_num_rows($check);
@@ -25,8 +26,9 @@
    else if(!empty($fname) && !empty($phone) && !empty($address)){
     mysqli_query($mysqli,"INSERT INTO members_registration(fname,mname,lname,gender,phone_number,address)VALUES('$fname','$mname','$lname','$gender','$phone','$address')");
     $last_id=$mysqli->insert_id;
-     mysqli_query($mysqli,"INSERT INTO temperature_tbl(uid,temperature)VALUES('$last_id','$tem')");
-       header('location: index.php');  
+    $_SESSION['last_id']=$mysqli->insert_id;
+     // mysqli_query($mysqli,"INSERT INTO temperature_tbl(uid,temperature)VALUES('$last_id','$tem')");
+       header('location: take_temperature_inc_new_member.php');  
    }else{
      echo '<script type="text/javascript">
     swal("Ooooops!","unable to insert records!","error");
@@ -60,9 +62,9 @@
     <div class="form-group ">
       <input type="number" class="form-control" placeholder="phone" name="phone" required="">
     </div>
-    <div class="form-group ">
-      <input type="text" class="form-control" placeholder="Temperature" name="temp" required="" >
-    </div>
+    <!-- <div class="form-group ">
+      <input type="text" class="form-control" placeholder="Temperature" name="temp"  >
+    </div> -->
    <div class="form-group">
       <input type="text" class="form-control" placeholder="Address" name="address" >
     </div>

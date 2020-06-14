@@ -13,10 +13,10 @@
 					<th>Full Name</th>
                     <th>Current Temperature</th>
                     <th>Phone</th>
-                    
                     <th>Gender</th>
                     <th>Address</th>
-                    <th></th>
+                    <th>Seat Number</th>
+                     <th></th>
                     <th></th>
                     <th></th>
 					
@@ -26,7 +26,7 @@
 		<tbody>
 		<?php
        //  $date = date("Y-m-d");
-		$query=mysqli_query($mysqli,"SELECT *, temperature_tbl.temperature, temperature_tbl.date_taken FROM members_registration LEFT JOIN temperature_tbl ON members_registration.uid = temperature_tbl.uid where Date(temperature_tbl.date_taken)>= CURRENT_DATE ") or die(mysqli_error($mysqli));
+		$query=mysqli_query($mysqli,"SELECT *, temperature_tbl.temperature, temperature_tbl.date_taken,temperature_tbl.seat_number FROM members_registration LEFT JOIN temperature_tbl ON members_registration.uid = temperature_tbl.uid where Date(temperature_tbl.date_taken)>= CURRENT_DATE ") or die(mysqli_error($mysqli));
 
 		//$query = mysqli_query($mysqli,"select * from crusaders ")or die(mysqli_error($mysqli));
 		$i = 0;
@@ -42,9 +42,10 @@
 		<td><?php echo $row['phone_number']; ?></td> 
 		<td><?php echo $row['gender']; ?></td> 
 		<td><?php echo $row['address']; ?></td> 
+		<td><?php echo $row['seat_number']; ?></td> 
 	
 		
-		<!--<td  width="20"><input id="optionsCheckbox" class="uniform_on" name="selector[]" type="checkbox" value="<?php echo $id; ?>"></td>-->
+		<!--<td  width="20"><input id="optionsCheckbox" class="uniform_on" name="selector[]" type="checkbox" value="<?php //echo $id; ?>"></td>-->
 		<td >
 		<a data-placement="left" title="Click to Edit" id="edit<?php echo $id; ?>" href="update_temperature.php<?php echo '?id='.$id; ?>" class="btn btn-success" style="background: #726464">UPDATE TEMPERATURE</a></td>
 			<script type="text/javascript">
